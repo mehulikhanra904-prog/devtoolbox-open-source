@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 
 function App() {
@@ -81,6 +81,41 @@ function App() {
   );
 }
 
+function CopyButton({ value, successText = "Copied!" }) {
+  const [copied, setCopied] = useState(false);
+  const resetTimer = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (resetTimer.current) {
+        clearTimeout(resetTimer.current);
+      }
+    };
+  }, []);
+
+  const handleCopy = async () => {
+    if (!value) return;
+
+    await navigator.clipboard.writeText(value);
+    setCopied(true);
+
+    if (resetTimer.current) {
+      clearTimeout(resetTimer.current);
+    }
+
+    resetTimer.current = setTimeout(() => {
+      setCopied(false);
+      resetTimer.current = null;
+    }, 1600);
+  };
+
+  return (
+    <button onClick={handleCopy} aria-live="polite">
+      {copied ? successText : "Copy"}
+    </button>
+  );
+}
+
 /* JSON FORMATTER */
 
 function JsonFormatter() {
@@ -110,13 +145,6 @@ function JsonFormatter() {
     }
   };
 
-  const copyOutput = async () => {
-    if (!output) return;
-
-    await navigator.clipboard.writeText(output);
-    alert("Copied!");
-  };
-
   return (
     <ToolCard
       title="JSON Formatter"
@@ -142,7 +170,7 @@ function JsonFormatter() {
         <div className="output-box">
           <div className="output-header">
             <strong>Result</strong>
-            <button onClick={copyOutput}>Copy</button>
+            <CopyButton value={output} />
           </div>
 
           <pre>{output}</pre>
@@ -173,13 +201,6 @@ function PasswordGenerator() {
     setPassword(result);
   };
 
-  const copyPassword = async () => {
-    if (!password) return;
-
-    await navigator.clipboard.writeText(password);
-    alert("Password copied!");
-  };
-
   return (
     <ToolCard
       title="Password Generator"
@@ -204,7 +225,7 @@ function PasswordGenerator() {
       {password && (
         <div className="password-result">
           <code>{password}</code>
-          <button onClick={copyPassword}>Copy</button>
+          <CopyButton value={password} />
         </div>
       )}
     </ToolCard>
