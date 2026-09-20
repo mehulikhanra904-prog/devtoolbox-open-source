@@ -32,3 +32,22 @@ Clone the repository:
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/devtoolbox-open-source.git
+## 🌱 Good First Issues
+
+New to open source? Start with one of our beginner-friendly issues.
+
+- [Add UUID Generator](../../issues)
+- [Add Color Converter](../../issues)
+- [Improve mobile sidebar](../../issues)
+- [Add automated tests](../../issues)
+
+### How to contribute
+
+1. Choose an issue.
+2. Comment that you would like to work on it.
+3. Fork this repository.
+4. Create a new branch.
+5. Make your changes.
+6. Run `npm run build`.
+7. Commit and push your changes.
+8. Open a Pull Request.
