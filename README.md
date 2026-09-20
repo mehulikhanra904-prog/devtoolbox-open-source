@@ -29,32 +29,6 @@ The project is also designed as a beginner-friendly open-source project where de
 
 ---
 
-## ✨ Current Features
-
-DevToolBox currently provides the following tools.
-
-### 🔄 JSON Formatter
-
-Format and minify JSON directly in the browser.
-
-#### Features
-
-- Format JSON with readable indentation
-- Minify JSON into a compact format
-- Detect invalid JSON
-- Display useful error messages
-- Copy formatted/minified output
-- No backend required
-
-#### Example
-
-Input:
-Formatted Output
-
-{
-  "name": "DevToolBox",
-  "type": "open-source"
-}
 🔐 Password Generator
 
 Generate random passwords directly in the browser.
